@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class brand extends JFrame{
-	int ii=0;
+	int limit=0;
 
 	JComboBox cb1=new JComboBox<>();
 	
@@ -43,7 +43,7 @@ public class brand extends JFrame{
 			cb1.addItem(bean.getB());
 		}
 		cb1.addActionListener((e)->{
-			ii=0;
+			limit=0;
 			set();
 		});
 
@@ -85,8 +85,9 @@ public class brand extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
+				// 왼쪽 화살표가 활성화되어있다면
 				if(left.isEnabled()) {
-					ii-=6;
+					limit-=6;
 					set();
 				}
 			}
@@ -97,7 +98,7 @@ public class brand extends JFrame{
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if(right.isEnabled()) {
-					ii+=6;
+					limit+=6;
 					set();
 				}
 			}
@@ -120,18 +121,24 @@ public class brand extends JFrame{
 		// 왼쪽 오른쪽 화살표 비활성화 여부 지정
 		left.setEnabled(true);
 		right.setEnabled(true);
-		if(ii==0) {
+		// 현제 페이지의 첫 번째 값이 전체의 첫 번째 값이면
+		if(limit==0) {
+			// 왼쪽 화살표 비활성화
 			left.setEnabled(false);
 		} 
-		if(ii+6>=max) {
+		// 현제 페이지에 전체의 마지막 번째 값이 포함되어있다면
+		if(limit+6>=max) {
+			// 오른쪽 화살표 비활성화
 			right.setEnabled(false);
 		}
 		
-		// 브랜드는 6개씩 가져오므로 한계를 지정한 sql 구문
 		if(cb1.getSelectedIndex()==0) {
-			mgr.sql="select bno, bname from brand limit "+ii+", 6;";
+			// 브랜드는 6개씩 가져오므로 limit을 사용
+			// limit 시작값(생략=0), 양
+			// 예) limit 6,6 => 일곱 번째 행부터 6개 가져와라
+			mgr.sql="select bno, bname from brand limit "+limit+", 6;";
 		} else {
-			mgr.sql="select bno, bname from brand where cno="+cb1.getSelectedIndex()+" limit "+ii+", 6;";
+			mgr.sql="select bno, bname from brand where cno="+cb1.getSelectedIndex()+" limit "+limit+", 6;";
 		}
 		list=mgr.a2();
 		
