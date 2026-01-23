@@ -77,8 +77,10 @@ public class advertise extends JFrame{
 				dispose();
 				if(h==0) {
 					new main();
-				}else {
+				}else if(h==1) {
 					new search();
+				}else {
+					new binfo();
 				}
 			}
 		});
