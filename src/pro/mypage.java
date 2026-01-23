@@ -2,9 +2,15 @@ package pro;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,25 +23,36 @@ import javax.swing.table.DefaultTableModel;
 
 public class mypage extends JFrame{
 
-	JButton bt1=new JButton("³»°¡ ÁÁ¾ÆÇÑ ¾Ë¹Ù");
-	JButton bt2=new JButton("´ë±âÁßÀÎ ¾Ë¹Ù");
-	JButton bt3=new JButton("ÇÕ°İÇÑ ¾Ë¹Ù");
+	JButton bt1=new JButton("ë‚´ê°€ ì¢‹ì•„í•œ ì•Œë°”");
+	JButton bt2=new JButton("ëŒ€ê¸°ì¤‘ì¸ ì•Œë°”");
+	JButton bt3=new JButton("í•©ê²©í•œ ì•Œë°”");
 	
 	JScrollPane jsp=new JScrollPane();
 	JTable table=new JTable();
 	DefaultTableModel model=new DefaultTableModel();
 	
-	//column ¿­
-	String co[]= {"A","B","C","D","E"};
-	//row Çà
+	int jno[]=new int[999];
+	int bno[]=new int[999];
+	
+	//column ì—´
+	String co[];
+	//row í–‰
 	String ro[][];
+	
+	String co1[]= {"ë²ˆí˜¸","ì¹´í…Œê³ ë¦¬","ë¸Œëœë“œ","ë¸Œëœë“œëª…","ì•Œë°”","ì¢‹ì•„ìš” í•œ ë‚ ì§œ"};
+	String co2[]= {"ë²ˆí˜¸","ì§€ì› ë²ˆí˜¸","ë¸Œëœë“œ","ì•Œë°”","ì§€ì› ë‚ ì§œ","ì§€ì› ìê²©"};
+	String co3[]= {"ë²ˆí˜¸","ì§€ì› ë²ˆí˜¸","ë¸Œëœë“œ","ì•Œë°”","ì§€ì› ë‚ ì§œ","ê¸ˆì•¡"};
+	
+	ArrayList<Bean>list;
+	Bean bean;
+	DBMgr mgr=new DBMgr();
 	
 	public mypage() {
 		setLayout(null);
 		
-		bt1.setFont(new Font("¸¼Àº °íµñ",0,13));
-		bt2.setFont(new Font("¸¼Àº °íµñ",0,13));
-		bt3.setFont(new Font("¸¼Àº °íµñ",0,13));
+		bt1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
+		bt2.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
+		bt3.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
 		
 		bt1.setForeground(Color.white);
 		bt1.setBackground(new Color(255,120,50));
@@ -53,6 +70,11 @@ public class mypage extends JFrame{
 		
 		jsp.setBounds(10,50,650,400);
 		
+		co=co1;
+		mgr.sql="select j.jno, cname, b.bno, bname, jname, ldate\r\n"
+				+ " from job j join likes l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
+				+ "  where uno="+main.no+" order by ldate;\r\n"
+				+ "";
 		set();
 		
 		add(bt1);
@@ -62,9 +84,75 @@ public class mypage extends JFrame{
 		
 		setVisible(true);
 		setSize(700,500);
-		setTitle("¸¶ÀÌÆäÀÌÁö");
+		setTitle("ë§ˆì´í˜ì´ì§€");
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
+
+		bt1.addActionListener((e)->{
+			bt1.setForeground(Color.white);
+			bt1.setBackground(new Color(255,120,50));
+			bt1.setBorder(new LineBorder(new Color(255,120,50)));
+			bt2.setForeground(new Color(255,120,50));
+			bt2.setBackground(Color.white);
+			bt2.setBorder(new LineBorder(new Color(255,120,50)));
+			bt3.setForeground(new Color(255,120,50));
+			bt3.setBackground(Color.white);
+			bt3.setBorder(new LineBorder(new Color(255,120,50)));
+			co=co1;
+			mgr.sql="select j.jno, cname, b.bno, bname, jname, ldate\r\n"
+				+ " from job j join likes l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
+				+ "  where uno="+main.no+" order by ldate;\r\n"
+				+ "";
+			set();
+		});
+		bt2.addActionListener((e)->{
+			bt2.setForeground(Color.white);
+			bt2.setBackground(new Color(255,120,50));
+			bt2.setBorder(new LineBorder(new Color(255,120,50)));
+			bt1.setForeground(new Color(255,120,50));
+			bt1.setBackground(Color.white);
+			bt1.setBorder(new LineBorder(new Color(255,120,50)));
+			bt3.setForeground(new Color(255,120,50));
+			bt3.setBackground(Color.white);
+			bt3.setBorder(new LineBorder(new Color(255,120,50)));
+			mgr.sql="select j.jno, apno, b.bno, jname, apdate, case when jgrade=0 then 'ë¬´ê´€' when jgrade=1 then 'ëŒ€í•™' else 'ê³ ë“±' end\r\n"
+					+ " from job j join apply l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
+					+ "  where uno="+main.no+" and apok=0 order by apdate;\r\n"
+					+ "";
+			co=co2;
+			set();
+		});
+		bt3.addActionListener((e)->{
+			bt3.setForeground(Color.white);
+			bt3.setBackground(new Color(255,120,50));
+			bt3.setBorder(new LineBorder(new Color(255,120,50)));
+			bt2.setForeground(new Color(255,120,50));
+			bt2.setBackground(Color.white);
+			bt2.setBorder(new LineBorder(new Color(255,120,50)));
+			bt1.setForeground(new Color(255,120,50));
+			bt1.setBackground(Color.white);
+			bt1.setBorder(new LineBorder(new Color(255,120,50)));
+			mgr.sql="select j.jno, apno, b.bno, jname, apdate, format(jmoney,0)\r\n"
+					+ " from job j join apply l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
+					+ "  where uno="+main.no+" and apok=1 order by apdate;\r\n"
+					+ "";
+			co=co3;
+			set();
+		});
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				if(e.getClickCount()==2) {
+					if(table.getSelectedColumn()==2) {
+						
+					}
+						
+				}
+			}
+		});
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -77,7 +165,21 @@ public class mypage extends JFrame{
 	}
 	
 	void set() {
+		
 		model=new DefaultTableModel(ro,co) {
+			// table cellì— ì´ë¯¸ì§€ ë„£ê¸° ì „ ì„¤ì •
+			@Override
+			public Class<?> getColumnClass(int columnIndex) {
+				// TODO Auto-generated method stub
+				if(getRowCount()>0) {
+					Object value=getValueAt(0, columnIndex);
+					if(value!=null) {
+						return getValueAt(0, columnIndex).getClass();
+					}
+				}
+				return super.getColumnClass(columnIndex);
+			}
+			
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// TODO Auto-generated method stub
@@ -85,27 +187,58 @@ public class mypage extends JFrame{
 			}
 		};
 		
-		for (int i = 0; i < 10; i++) {
-			model.addRow(new Object[] {(i+1),(i+1)+"-1",(i+1)+"-2",(i+1)+"-3",(i+1)+"-4"});
-//			model.addRow(new Object[] {(i*5+1),(i*5+2),(i*5+3),(i*5+4),(i*5+5)});
+		list=mgr.a6();
+		for (int i = 0; i < list.size(); i++) {
+			bean=list.get(i);
+			
+			Image img=null;
+			ImageIcon icon=null;
+			
+			try {
+				img=ImageIO.read(new File("./datafiles/brand/"+bean.getC()+".png"));
+				icon=new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			jno[i]=Integer.parseInt(bean.getA());
+			bno[i]=Integer.parseInt(bean.getC());
+			
+			if(co==co1) {
+				model.addRow(new Object[] {(i+1),  "<html>"+bean.getB()+"<br><br><br><br><br>", icon ,bean.getD() ,  "<html>"+bean.getE()+"<br><br><br><br><br>", bean.getF()});
+			} else {
+				model.addRow(new Object[] {(i+1),  bean.getB(), icon , "<html>"+bean.getD()+"<br><br><br><br><br>", bean.getE(), bean.getF()});
+			}
 		}
 		
 		table=new JTable(model);
 
-		// Çà ³ôÀÌ Á¶Àı
-		table.setRowHeight(30);
+		// í–‰ ë†’ì´ ì¡°ì ˆ
+		table.setRowHeight(100);
 		
 		table.getTableHeader().setBackground(new Color(255,120,50));
 		table.getTableHeader().setForeground(Color.white);
-		table.setFont(new Font("¸¼Àº °íµñ",0,13));
+		table.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
+		table.getTableHeader().setForeground(Color.white);
+		
 		
 		DefaultTableCellRenderer dtc=new DefaultTableCellRenderer();
 		dtc.setHorizontalAlignment(JLabel.CENTER);
 		
 		
 		for (int i = 0; i < co.length; i++) {
-			if(i==0||i==3||i==5) {
-				table.getColumn(co[i]).setCellRenderer(dtc);
+			if(co==co1) {
+				int w1[]= {30,40,120,50,200,80};
+				if(i==0||i==3||i==5) {
+					table.getColumn(co[i]).setCellRenderer(dtc);
+				}
+				table.getColumn(co[i]).setPreferredWidth(w1[i]);
+			}else {
+				int w2[]= {30,40,120,200,80,50};
+				if(i==0||i==1||i==4||i==5) {
+					table.getColumn(co[i]).setCellRenderer(dtc);
+				}
+				table.getColumn(co[i]).setPreferredWidth(w2[i]);
 			}
 		}
 		

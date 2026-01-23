@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
 
 public class main extends JFrame{
 
-	static int no=0;
+	static int no=1;
 	
 	// .getScaledInstance(이미지 폭 값, 이미지 높이 값, 이미지 스타일(gif 제외 = Image.SMOOTH)))
 	// Image.SMOOTH = 4 (근데 0 해도 됨)
