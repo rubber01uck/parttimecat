@@ -29,12 +29,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class find extends JFrame{
 
-	JLabel map=new JLabel(new ImageIcon(new ImageIcon("./datafiles/Áöµµ.png").getImage().getScaledInstance(600,550,0)));
+	JLabel map=new JLabel(new ImageIcon(new ImageIcon("./datafiles/ì§€ë„.png").getImage().getScaledInstance(600,550,0)));
 
 	JScrollPane jsp=new JScrollPane();
 	JTable table=new JTable();
 	DefaultTableModel model=new DefaultTableModel();
-	String co[]= {"Á÷Á¾ Ä«Å×°í¸®"};
+	String co[]= {"ì§ì¢… ì¹´í…Œê³ ë¦¬"};
 	String ro[][];
 	
 	ArrayList<Bean>list;
@@ -57,7 +57,7 @@ public class find extends JFrame{
 			}
 		};
 		
-		model.addRow(new Object[] {"ÀüÃ¼"});
+		model.addRow(new Object[] {"ì „ì²´"});
 		
 		mgr.sql="select * from category;";
 		list=mgr.a2();
@@ -67,20 +67,20 @@ public class find extends JFrame{
 		}
 		
 		table=new JTable(model);
-		table.setFont(new Font("¸¼Àº °íµñ",0,12));
-		table.getTableHeader().setFont(new Font("¸¼Àº °íµñ",1,12));
+		table.setFont(new Font("ë§‘ì€ ê³ ë”•",0,12));
+		table.getTableHeader().setFont(new Font("ë§‘ì€ ê³ ë”•",1,12));
 		table.getTableHeader().setBackground(Color.white);
 		table.setSelectionBackground(Color.red);
 		table.setSelectionForeground(Color.white);
 		
-		// Çà ´ÙÁß ¼±ÅÃ °¡´É
+		// í–‰ ë‹¤ì¤‘ ì„ íƒ ê°€ëŠ¥
 		// ListSelectionModel.MULTIPLE_INTERVAL_SELECTION = 2
 //		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-//		¡Ö table.setSelectionMode(2);
+//		â‰’ table.setSelectionMode(2);
 		
 		table.setRowHeight(35);
 		
-		// 0¹øÂ° ÇàºÎÅÍ 0¹øÂ° Çà±îÁö ¼±ÅÃ½ÃÅ°±â ¡Ö 'ÀüÃ¼' ¼±ÅÃÇÏ±â
+		// 0ë²ˆì§¸ í–‰ë¶€í„° 0ë²ˆì§¸ í–‰ê¹Œì§€ ì„ íƒì‹œí‚¤ê¸° â‰’ 'ì „ì²´' ì„ íƒí•˜ê¸°
 		table.setRowSelectionInterval(0, 0);
 		
 		jsp.setViewportView(table);
@@ -96,7 +96,7 @@ public class find extends JFrame{
 		set();
 		
 		setVisible(true);
-		setTitle("Ã£±â");
+		setTitle("ì°¾ê¸°");
 		setSize(800, 590);
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
@@ -130,14 +130,14 @@ public class find extends JFrame{
 		});
 	}
 	
-	// Á¶°Ç¿¡ ¸Âµµ·Ï ÆĞ³Î µğÀÚÀÎ
+	// ì¡°ê±´ì— ë§ë„ë¡ íŒ¨ë„ ë””ìì¸
 	void set() {
 		map.removeAll();
 		
 		if(table.getSelectedRow()==0) {
 			mgr.sql="select * From brand;";
 		} else {
-			// ´ÙÁß ¼±ÅÃ Á¦¿Ü ±âÁØ
+			// ë‹¤ì¤‘ ì„ íƒ ì œì™¸ ê¸°ì¤€
 			mgr.sql="select * From brand where cno="+table.getSelectedRow()+";";
 			
 		}
@@ -149,9 +149,9 @@ public class find extends JFrame{
 			bean=list.get(i);
 			
 			
-			a[i]=new JLabel("¡Ü");
+			a[i]=new JLabel("â—");
 			a[i].setName(bean.getA());
-			// ¸¶¿ì½º ¿À¹ö ½Ã, ºê·£µå ÀÌ¸§ ÅøÆÁÀ¸·Î ³ªÅ¸³»±â
+			// ë§ˆìš°ìŠ¤ ì˜¤ë²„ ì‹œ, ë¸Œëœë“œ ì´ë¦„ íˆ´íŒìœ¼ë¡œ ë‚˜íƒ€ë‚´ê¸°
 			a[i].setToolTipText(bean.getB());
 			a[i].setForeground(Color.red);
 			
@@ -170,7 +170,7 @@ public class find extends JFrame{
 					super.mouseClicked(e);
 					if(e.getClickCount()==2) {
 						dispose();
-						binfo.h=3;
+						binfo.h=2;
 						binfo.no=Integer.parseInt(a[n].getName());
 						new binfo();
 					}

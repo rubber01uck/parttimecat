@@ -23,11 +23,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class mypage2 extends JFrame{
 	
+	// 이 폼은 mypage이지만 코드를 간소화한 버전
+	// 더 간소 시킬 순 있지만 난이도가 계속 올라가므로 여기까지만 작성함
+	// 나중에 답지 만들 때나 시간 단축시킬 때 이걸 참고해서 여러 가지 방법을 떠올려 코드를 간소화 시켜보세요.
+	
+	// 선택된 버튼 저장
 	int di=0;
 	
 	int jno[]=new int[999];
 	int bno[]=new int[999];
 	
+	// 버튼 액션(다른 버튼 색도 바꾸는거) 간소화하기 위해서 배열 사용
 	JButton b[]=new JButton[3];
 	String bb[]= {"내가 좋아한 알바","대기중일 알바","합격한 알바"};
 	
@@ -104,24 +110,15 @@ public class mypage2 extends JFrame{
 		
 		if(di==0) {
 			//첫번쨰 테이블
-			mgr.sql="select j.jno, cname, b.bno, bname, jname, ldate\r\n"
-					+ " from job j join likes l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
-					+ "  where uno="+main.no+" order by ldate;\r\n"
-					+ "";
+			mgr.sql="select j.jno, cname, b.bno, bname, jname, ldate from likes as l join job as j on l.jno=j.jno join brand as b on j.bno=b.bno join category as c on b.cno=c.cno where uno="+main.no+";";
 			co=co1;
 		}else if(di==1) {
 			//두번쨰 테이블
-			mgr.sql="select j.jno, apno, b.bno, jname, apdate, case when jgrade=0 then '무관' when jgrade=1 then '대학' else '고등' end\r\n"
-					+ " from job j join apply l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
-					+ "  where uno="+main.no+" and apok=0 order by apdate;\r\n"
-					+ "";
+			mgr.sql="select j.jno, apno, b.bno, jname, apdate, if(jgrade=0,'무관',if(jgrade=1,'대학','고등')) from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno where uno="+main.no+" and apok=0;";
 			co=co2;
 		}else if(di==2) {
 			//세번쨰 테이블
-			mgr.sql="select j.jno, apno, b.bno, jname, apdate, format(jmoney,0)\r\n"
-					+ " from job j join apply l on l.jno=j.jno join brand b on b.bno=j.bno  join category c on c.cno=b.cno  \r\n"
-					+ "  where uno="+main.no+" and apok=1 order by apdate;\r\n"
-					+ "";
+			mgr.sql="select j.jno, apno, b.bno, jname, apdate, if(jgrade=0,'무관',if(jgrade=1,'대학','고등')) from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno where uno="+main.no+" and apok=1;";
 			co=co3;
 		}
 		model=new DefaultTableModel(ro,co) {
@@ -161,9 +158,9 @@ public class mypage2 extends JFrame{
 			bno[i]=Integer.parseInt(bean.getC());
 			
 			if(di==0) {
-				model.addRow(new Object[] {(i+1),  "<html>"+bean.getB()+"<br><br><br><br><br>", icon ,bean.getD() ,  "<html>"+bean.getE()+"<br><br><br><br><br>", bean.getF()});
+				model.addRow(new Object[] {(i+1),  "<html>"+bean.getB(), icon ,bean.getD() ,  "<html>"+bean.getE(), bean.getF()});
 			} else {
-				model.addRow(new Object[] {(i+1),  bean.getB(), icon , "<html>"+bean.getD()+"<br><br><br><br><br>", bean.getE(), bean.getF()});
+				model.addRow(new Object[] {(i+1),  bean.getB(), icon , "<html>"+bean.getD(), bean.getE(), bean.getF()});
 			}
 		}
 		
@@ -180,26 +177,56 @@ public class mypage2 extends JFrame{
 		
 		DefaultTableCellRenderer dtc=new DefaultTableCellRenderer();
 		dtc.setHorizontalAlignment(JLabel.CENTER);
+		DefaultTableCellRenderer dtc2=new DefaultTableCellRenderer();
+		dtc2.setVerticalAlignment(JLabel.TOP);
 		
 		for (int i = 0; i < co.length; i++) {
 			if(di==0) {
 				int w1[]= {30,40,120,50,200,80};
 				if(i==0||i==3||i==5) {
 					table.getColumn(co[i]).setCellRenderer(dtc);
+				}else if(i==1||i==4) {
+					table.getColumn(co[i]).setCellRenderer(dtc2);
 				}
 				table.getColumn(co[i]).setPreferredWidth(w1[i]);
 			}else {
 				int w2[]= {30,40,120,200,80,50};
 				if(i==0||i==1||i==4||i==5) {
 					table.getColumn(co[i]).setCellRenderer(dtc);
+				}else if(i==3) {
+					table.getColumn(co[i]).setCellRenderer(dtc2);
 				}
 				table.getColumn(co[i]).setPreferredWidth(w2[i]);
 			}
 		}
 		
-		
-		
 		jsp.setViewportView(table);
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				if(e.getClickCount()==2) {
+					if(table.getSelectedColumn()==2) {
+						binfo.no=bno[table.getSelectedRow()];
+						dispose();
+						binfo.h=3;
+						new binfo();
+					}else if(di==1&&table.getSelectedColumn()==4) {
+						info.no=jno[table.getSelectedRow()];
+						info.h=3;
+						dispose();
+						new info();
+					}else if(di!=1&&table.getSelectedColumn()==3) {
+						info.no=jno[table.getSelectedRow()];
+						info.h=3;
+						dispose();
+						new info();
+					}
+				}
+			}
+		});
 	}
 	
 	public static void main(String[] args) {

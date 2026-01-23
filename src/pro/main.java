@@ -20,35 +20,35 @@ public class main extends JFrame{
 
 	static int no=1;
 	
-	// .getScaledInstance(ÀÌ¹ÌÁö Æø °ª, ÀÌ¹ÌÁö ³ôÀÌ °ª, ÀÌ¹ÌÁö ½ºÅ¸ÀÏ(gif Á¦¿Ü = Image.SMOOTH)))
-	// Image.SMOOTH = 4 (±Ùµ¥ 0 ÇØµµ µÊ)
+	// .getScaledInstance(ì´ë¯¸ì§€ í­ ê°’, ì´ë¯¸ì§€ ë†’ì´ ê°’, ì´ë¯¸ì§€ ìŠ¤íƒ€ì¼(gif ì œì™¸ = Image.SMOOTH)))
+	// Image.SMOOTH = 4 (ê·¼ë° 0 í•´ë„ ë¨)
 	JLabel logo=new JLabel(new ImageIcon(new ImageIcon("./datafiles/icon/cat.png").getImage().getScaledInstance(100, 50, 0)));
-	JLabel lb=new JLabel("¾Ë¹ÙÄ¹");
+	JLabel lb=new JLabel("ì•Œë°”ìº£");
 
-	// [A¿µ¿ª]
-	// ·¹ÀÌºí(JLabel) ¹è¿­
+	// [Aì˜ì—­]
+	// ë ˆì´ë¸”(JLabel) ë°°ì—´
 	JLabel a1[]=new JLabel[5];
-	// ¹®ÀÚ¿­(String) ¹è¿­
-	String a2[]= {"Ã¤¿ë", "ºê·£µå", "Ã£±â", "¸¶ÀÌÆäÀÌÁö", "Åë°è"};
-	// GridLayout() <- °İÀÚ ·¹ÀÌ¾Æ¿ô, ¾È¿¡ °´Ã¼¸¦ ³ÖÀ» ¶§, setBounds() ¾È ÇØµµ µÊ. Å©±â ÀÚµ¿ º¯°æ
-	// GridLayout(Çà °³¼ö, ¿­ °³¼ö, ¿­ °£°İ, Çà °£°İ)
+	// ë¬¸ìì—´(String) ë°°ì—´
+	String a2[]= {"ì±„ìš©", "ë¸Œëœë“œ", "ì°¾ê¸°", "ë§ˆì´í˜ì´ì§€", "í†µê³„"};
+	// GridLayout() <- ê²©ì ë ˆì´ì•„ì›ƒ, ì•ˆì— ê°ì²´ë¥¼ ë„£ì„ ë•Œ, setBounds() ì•ˆ í•´ë„ ë¨. í¬ê¸° ìë™ ë³€ê²½
+	// GridLayout(í–‰ ê°œìˆ˜, ì—´ ê°œìˆ˜, ì—´ ê°„ê²©, í–‰ ê°„ê²©)
 	JPanel p1=new JPanel(new GridLayout(1,5));
 	
 	
-	// [B¿µ¿ª]
-	// = new Panel(null) ¡Ö .setLayout(null)
+	// [Bì˜ì—­]
+	// = new Panel(null) â‰’ .setLayout(null)
 	JPanel p2=new JPanel(null);
-	JLabel top=new JLabel("ÀÎ±â ºê·£µå TOP 5");
+	JLabel top=new JLabel("ì¸ê¸° ë¸Œëœë“œ TOP 5");
 	JLabel top1[]=new JLabel[5];
 	
 	
-	// [C¿µ¿ª]
+	// [Cì˜ì—­]
 	JLabel img=new JLabel();
 	
 	
-	// [D¿µ¿ª]
+	// [Dì˜ì—­]
 	JPanel p3=new JPanel(null);
-	JLabel b1=new JLabel("ÃßÃµ ¾Ë¹Ù");
+	JLabel b1=new JLabel("ì¶”ì²œ ì•Œë°”");
 	JLabel b2[]=new JLabel[6];
 	
 	ArrayList<Bean>list;
@@ -58,12 +58,12 @@ public class main extends JFrame{
 	public main() {
 		setLayout(null);
 		
-		lb.setFont(new Font("¸¼Àº °íµñ",1,20));
+		lb.setFont(new Font("ë§‘ì€ ê³ ë”•",1,20));
 		lb.setForeground(new Color(255,120,50));
 		
 		for (int i = 0; i < 5; i++) {
 			a1[i]=new JLabel(a2[i],JLabel.CENTER);
-			a1[i].setFont(new Font("¸¼Àº °íµñ",1,13));
+			a1[i].setFont(new Font("ë§‘ì€ ê³ ë”•",1,13));
 			a1[i].setForeground(Color.white);
 			p1.add(a1[i]);
 			
@@ -89,49 +89,49 @@ public class main extends JFrame{
 			});
 		}
 		
-		// [B¿µ¿ª]
-		// Á¶°Ç 4. Áö¿ø °Ç¼ö ¸¹Àº ¼ø, ºê·£µå ¹øÈ£ ¿À¸§Â÷¼øÀ¸·Î ºê·£µå ³ª¿­
-		// Áö¿ø(apply) Å×ÀÌºí¿¡´Â ºê·£µå Á¤º¸°¡ ¾øÀ¸¹Ç·Î ºê·£µå ¹øÈ£°¡ ÀÖ°í °°Àº ¿­ÀÌ ÀÖ´Â ¾Ë¹Ù(job) Å×ÀÌºí °áÇÕ
-		// ¾Ë¹Ù(job) Å×ÀÌºí¿¡´Â ºê·£µå ÀÌ¸§ÀÌ ¾øÀ¸¹Ç·Î ºê·£µå(brand) Å×ÀÌºí °áÇÕ
-		// ºê·£µå º°·Î Áö¿ø È½¼ö¸¦ ¾Ë¾Æ¾ß ÇÏ¹Ç·Î ºê·£µå ¹øÈ£·Î ¹­À½(group by)
-		// Áö¿ø °Ç¼ö ¸¹Àº ¼øÀ¸·Î Á¤·ÄÇØ¾ß ÇÏ¹Ç·Î order by count(*) desc
-		// Áö¿ø °Ç¼ö ³»¸²Â÷¼ø ´ÙÀ½ Á¤·Ä ±âÁØÀÌ ºê·£µå ¹øÈ£ ¿À¸§Â÷¼ø, Á¤·Ä ±âÁØÀÌ ¿©·¯ °³ÀÏ ¶§´Â ÄŞ¸¶·Î ±¸ºĞÇÏ¿© ¼ø¼­´ë·Î ÀÛ¼º => order by count(*) desc, b.bno (asc)
-		// TOP 5¸¸ ÇÊ¿äÇÏ¹Ç·Î °¡Àå µÚ¿¡ 'limit °¡Á®¿Ã ¼ö' => limit 5
+		// [Bì˜ì—­]
+		// ì¡°ê±´ 4. ì§€ì› ê±´ìˆ˜ ë§ì€ ìˆœ, ë¸Œëœë“œ ë²ˆí˜¸ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë¸Œëœë“œ ë‚˜ì—´
+		// ì§€ì›(apply) í…Œì´ë¸”ì—ëŠ” ë¸Œëœë“œ ì •ë³´ê°€ ì—†ìœ¼ë¯€ë¡œ ë¸Œëœë“œ ë²ˆí˜¸ê°€ ìˆê³  ê°™ì€ ì—´ì´ ìˆëŠ” ì•Œë°”(job) í…Œì´ë¸” ê²°í•©
+		// ì•Œë°”(job) í…Œì´ë¸”ì—ëŠ” ë¸Œëœë“œ ì´ë¦„ì´ ì—†ìœ¼ë¯€ë¡œ ë¸Œëœë“œ(brand) í…Œì´ë¸” ê²°í•©
+		// ë¸Œëœë“œ ë³„ë¡œ ì§€ì› íšŸìˆ˜ë¥¼ ì•Œì•„ì•¼ í•˜ë¯€ë¡œ ë¸Œëœë“œ ë²ˆí˜¸ë¡œ ë¬¶ìŒ(group by)
+		// ì§€ì› ê±´ìˆ˜ ë§ì€ ìˆœìœ¼ë¡œ ì •ë ¬í•´ì•¼ í•˜ë¯€ë¡œ order by count(*) desc
+		// ì§€ì› ê±´ìˆ˜ ë‚´ë¦¼ì°¨ìˆœ ë‹¤ìŒ ì •ë ¬ ê¸°ì¤€ì´ ë¸Œëœë“œ ë²ˆí˜¸ ì˜¤ë¦„ì°¨ìˆœ, ì •ë ¬ ê¸°ì¤€ì´ ì—¬ëŸ¬ ê°œì¼ ë•ŒëŠ” ì½¤ë§ˆë¡œ êµ¬ë¶„í•˜ì—¬ ìˆœì„œëŒ€ë¡œ ì‘ì„± => order by count(*) desc, b.bno (asc)
+		// TOP 5ë§Œ í•„ìš”í•˜ë¯€ë¡œ ê°€ì¥ ë’¤ì— 'limit ê°€ì ¸ì˜¬ ìˆ˜' => limit 5
 		mgr.sql="select b.bno, bname, count(*) from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno group by b.bno order by count(*) desc, b.bno limit 5;";
 		
-		// ºê·£µå ÀÌ¸§Àº È®ÀÎ¿ëÀ¸·Î µğÀÚÀÎ ½Ã ÇÊ¿ä ¾øÀ¸¹Ç·Î »ı·« °¡´É -> join brand ¾È ÇØµµ µÊ.
+		// ë¸Œëœë“œ ì´ë¦„ì€ í™•ì¸ìš©ìœ¼ë¡œ ë””ìì¸ ì‹œ í•„ìš” ì—†ìœ¼ë¯€ë¡œ ìƒëµ ê°€ëŠ¥ -> join brand ì•ˆ í•´ë„ ë¨.
 		// mgr.sql="select bno, count(*) from apply as a join job as j on a.jno=j.jno group by bno order by count(*) desc, bno limit 5;";
 		
 		
-		// mgr.sql¿¡ ÀÛ¼ºÇÑ ±¸¹®À» mysql¿¡ Àü¼ÛÇÏ¿© ½ÇÇàÇÏ°í ±× °á°ú °ªÀ» list¿¡ ÀúÀå
-		// list ÀúÀå ½Ã °á°ú °ªÀÇ ¿­¿¡ µû¶ó °¡Á®¿À±â, ½ÇÇàÇÒ mgr.sqlÀº Ãâ·ÂÇÒ ¿­ÀÌ b.bno, bname, count(*) ¼¼ °³ÀÌ¹Ç·Î => list=mgr.a3();
+		// mgr.sqlì— ì‘ì„±í•œ êµ¬ë¬¸ì„ mysqlì— ì „ì†¡í•˜ì—¬ ì‹¤í–‰í•˜ê³  ê·¸ ê²°ê³¼ ê°’ì„ listì— ì €ì¥
+		// list ì €ì¥ ì‹œ ê²°ê³¼ ê°’ì˜ ì—´ì— ë”°ë¼ ê°€ì ¸ì˜¤ê¸°, ì‹¤í–‰í•  mgr.sqlì€ ì¶œë ¥í•  ì—´ì´ b.bno, bname, count(*) ì„¸ ê°œì´ë¯€ë¡œ => list=mgr.a3();
 		list=mgr.a3();
 		for (int i = 0; i < 5; i++) {
-			// beanÀº list¿¡¼­ ÇàÀ» ÇÏ³ª¾¿¸¸ °¡Á®¿Í¼­ ÀúÀåÇÒ ¼ö ÀÖÀ½
-			// ½ÇÇàÇÒ mgr.sqlÀÇ °á°ú°ªÀº ÇàÀÌ 5°³
-			// for¹® ¾È¿¡¼­ °¢ ÇàÀÇ °ªÀ» ºÒ·¯¿Í¼­ JLabelÀÌ ¼±¾ğµÉ ¶§¸¶´Ù ³Ö¾îÁÜ
+			// beanì€ listì—ì„œ í–‰ì„ í•˜ë‚˜ì”©ë§Œ ê°€ì ¸ì™€ì„œ ì €ì¥í•  ìˆ˜ ìˆìŒ
+			// ì‹¤í–‰í•  mgr.sqlì˜ ê²°ê³¼ê°’ì€ í–‰ì´ 5ê°œ
+			// forë¬¸ ì•ˆì—ì„œ ê° í–‰ì˜ ê°’ì„ ë¶ˆëŸ¬ì™€ì„œ JLabelì´ ì„ ì–¸ë  ë•Œë§ˆë‹¤ ë„£ì–´ì¤Œ
 			bean=list.get(i);
 			top1[i]=new JLabel(new ImageIcon(new ImageIcon("./datafiles/brand/"+bean.getA()+".png").getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
-			// Å×µÎ¸® ¼³Á¤
-			// new LineBorder(»ö, ¼± ±½±â(¼ıÀÚ, »ı·« °¡´É))
+			// í…Œë‘ë¦¬ ì„¤ì •
+			// new LineBorder(ìƒ‰, ì„  êµµê¸°(ìˆ«ì, ìƒëµ ê°€ëŠ¥))
 			top1[i].setBorder(new LineBorder(Color.black));
-			// for¹®ÀÌ µ¹ ¶§¸¶´Ù i°ªÀÌ º¯°æµÇ¾î x°ªÀÌ 80¾¿ ´Ã¾î³²
+			// forë¬¸ì´ ëŒ ë•Œë§ˆë‹¤ iê°’ì´ ë³€ê²½ë˜ì–´ xê°’ì´ 80ì”© ëŠ˜ì–´ë‚¨
 			top1[i].setBounds(10+80*i,30,70,70);
 			p2.add(top1[i]);
 		}
 		
-		// ·Î±×ÀÎÇÑ À¯Àú°¡ °¡Àå ÃÖ±Ù¿¡ Áö¿øÇÑ ¾Ë¹ÙÀÇ Ä«Å×°í¸® ±¸ÇÏ´Â ¹ı
+		// ë¡œê·¸ì¸í•œ ìœ ì €ê°€ ê°€ì¥ ìµœê·¼ì— ì§€ì›í•œ ì•Œë°”ì˜ ì¹´í…Œê³ ë¦¬ êµ¬í•˜ëŠ” ë²•
 		mgr.sql="select cno from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno where uno=1 order by apdate desc limit 1;";
 		list=mgr.a1();
-		// ·Î±×ÀÎÀÌ Áö¿øÇÑ ¾Ë¹Ù°¡ ¾øÀ» °æ¿ì ¡Ö À§ sqlÀÇ °á°ú °ªÀÌ ³ª¿ÀÁö ¾ÊÀ½
+		// ë¡œê·¸ì¸ì´ ì§€ì›í•œ ì•Œë°”ê°€ ì—†ì„ ê²½ìš° â‰’ ìœ„ sqlì˜ ê²°ê³¼ ê°’ì´ ë‚˜ì˜¤ì§€ ì•ŠìŒ
 		if(list.size()==0) {
-			// order by rand() <- Á¤·Ä ·£´ı
-			// Ä«Å×°í¸®¸¦ ÁöÁ¤ÇØÁÖÁö ¾Ê°í ·£´ıÀ¸·Î 6°³ ÃßÃâ
-			mgr.sql="select jno, jname, jday, jtime, if(jwork=0,'Á¤±ÔÁ÷','°è¾àÁ÷'), jmoney from job as j join brand as b on j.bno=b.bno order by rand() limit 6;";
+			// order by rand() <- ì •ë ¬ ëœë¤
+			// ì¹´í…Œê³ ë¦¬ë¥¼ ì§€ì •í•´ì£¼ì§€ ì•Šê³  ëœë¤ìœ¼ë¡œ 6ê°œ ì¶”ì¶œ
+			mgr.sql="select jno, jname, jday, jtime, if(jwork=0,'ì •ê·œì§','ê³„ì•½ì§'), jmoney from job as j join brand as b on j.bno=b.bno order by rand() limit 6;";
 		}else {
-			// °¡Á®¿Â Ä«Å×°í¸® ¹øÈ£·Î °Ë»ö ÈÄ, ·£´ıÀ¸·Î 6°³ ÃßÃâ
+			// ê°€ì ¸ì˜¨ ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ë¡œ ê²€ìƒ‰ í›„, ëœë¤ìœ¼ë¡œ 6ê°œ ì¶”ì¶œ
 			bean=list.get(0);
-			mgr.sql="select jno, jname, jday, jtime, if(jwork=0,'Á¤±ÔÁ÷','°è¾àÁ÷'), jmoney from job as j join brand as b on j.bno=b.bno where cno="+bean.getA()+" order by rand() limit 6;";
+			mgr.sql="select jno, jname, jday, jtime, if(jwork=0,'ì •ê·œì§','ê³„ì•½ì§'), jmoney from job as j join brand as b on j.bno=b.bno where cno="+bean.getA()+" order by rand() limit 6;";
 		}
 		list=mgr.a6();
 		
@@ -139,26 +139,26 @@ public class main extends JFrame{
 		int y=30;
 		for (int i = 0; i < 6; i++) {
 			bean=list.get(i);
-			// <html> <- JLabelÀÇ Text °ªÀÌ JLabelÀÇ Æø ³ĞÀÌ¸¦ ³Ñ°åÀ» ¶§, ÀÚµ¿ ÁÙ¹Ù²Ş µÊ
-			// <b></b> <- »çÀÌÀÇ Text °ªÀº º¼µåÃ¼(±½°Ô) Ã³¸®µÊ
-			// <br> ´ÙÀ½ ÁÙ·Î ÀÌµ¿µÊ
-			// ¹®ÀÚ¿­°ú ¹®ÀÚ¿­ ¿¬°á/°áÇÕ ½Ã + »ç¿ë
-			b2[i]=new JLabel("<html><b>"+bean.getB()+"</b><br><br>[ÁÖ "+bean.getC()+"ÀÏ, "+bean.getD()+"½Ã°£, "+bean.getE()+"]<br>½Ã±Ş: "+bean.getF()+"¿ø");
+			// <html> <- JLabelì˜ Text ê°’ì´ JLabelì˜ í­ ë„“ì´ë¥¼ ë„˜ê²¼ì„ ë•Œ, ìë™ ì¤„ë°”ê¿ˆ ë¨
+			// <b></b> <- ì‚¬ì´ì˜ Text ê°’ì€ ë³¼ë“œì²´(êµµê²Œ) ì²˜ë¦¬ë¨
+			// <br> ë‹¤ìŒ ì¤„ë¡œ ì´ë™ë¨
+			// ë¬¸ìì—´ê³¼ ë¬¸ìì—´ ì—°ê²°/ê²°í•© ì‹œ + ì‚¬ìš©
+			b2[i]=new JLabel("<html><b>"+bean.getB()+"</b><br><br>[ì£¼ "+bean.getC()+"ì¼, "+bean.getD()+"ì‹œê°„, "+bean.getE()+"]<br>ì‹œê¸‰: "+bean.getF()+"ì›");
 			b2[i].setName(bean.getA());
 			b2[i].setBorder(new LineBorder(new Color(255,120,50)));
 			b2[i].setBounds(x,y,180,130);
-			// JLabelÀº .setOpaque(false)°¡ ±âº» ¼³Á¤ÀÌ¶ó true·Î ¹Ù²ÙÁö ¾Ê°í ¹è°æ»öÀ» º¯°æÇÏÁö ¾ÊÀ¸¸é Àû¿ëÀÌ µÇÁö ¾ÊÀ½
+			// JLabelì€ .setOpaque(false)ê°€ ê¸°ë³¸ ì„¤ì •ì´ë¼ trueë¡œ ë°”ê¾¸ì§€ ì•Šê³  ë°°ê²½ìƒ‰ì„ ë³€ê²½í•˜ì§€ ì•Šìœ¼ë©´ ì ìš©ì´ ë˜ì§€ ì•ŠìŒ
 			b2[i].setOpaque(true);
 			b2[i].setBackground(Color.white);
-			b2[i].setFont(new Font("¸¼Àº °íµñ",0,13));
+			b2[i].setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
 			
-			// Æø °ª(180) + ÁÖ°í ½ÍÀº °£°İ(20)
+			// í­ ê°’(180) + ì£¼ê³  ì‹¶ì€ ê°„ê²©(20)
 			x+=200;
-			// if¹® º¸´Ù .setBounds()¸¦ ¸ÕÀú ÀÛ¼ºÇÏ¿´À¸¹Ç·Î ÀÌ if¹®Àº 'JLable 3°³¸¦ ¹èÄ¡ÇÏ¿´´Ù¸é'À¸·Î ÇØ¼®ÇÒ ¼ö ÀÖÀ½
+			// ifë¬¸ ë³´ë‹¤ .setBounds()ë¥¼ ë¨¼ì € ì‘ì„±í•˜ì˜€ìœ¼ë¯€ë¡œ ì´ ifë¬¸ì€ 'JLable 3ê°œë¥¼ ë°°ì¹˜í•˜ì˜€ë‹¤ë©´'ìœ¼ë¡œ í•´ì„í•  ìˆ˜ ìˆìŒ
 			if(i==2) {
-				// ±âº» °£°İ
+				// ê¸°ë³¸ ê°„ê²©
 				x=30;
-				// ³ôÀÌ °ª(130) + ÁÖ°í ½ÍÀº °£°İ(20)
+				// ë†’ì´ ê°’(130) + ì£¼ê³  ì‹¶ì€ ê°„ê²©(20)
 				y+=150;
 			}
 			p3.add(b2[i]);
@@ -171,9 +171,9 @@ public class main extends JFrame{
 					super.mouseClicked(e);
 					dispose();
 					info.no=Integer.parseInt(b2[n].getName());
-					// h <- ÀÌÀü Æû ±¸ºĞ
-					// h=0Àº ¸ŞÀÎ¿¡¼­ ºÒ·¯³¿
-					// h=1Àº Ã¤¿ë¿¡¼­ ºÒ·¯³¿
+					// h <- ì´ì „ í¼ êµ¬ë¶„
+					// h=0ì€ ë©”ì¸ì—ì„œ ë¶ˆëŸ¬ëƒ„
+					// h=1ì€ ì±„ìš©ì—ì„œ ë¶ˆëŸ¬ëƒ„
 					info.h=0;
 					new info();
 				}
@@ -188,7 +188,7 @@ public class main extends JFrame{
 		p1.setBackground(new Color(255,120,50));
 		p1.setBounds(0,60,685,40);
 		
-		top.setFont(new Font("¸¼Àº °íµñ",1,10));
+		top.setFont(new Font("ë§‘ì€ ê³ ë”•",1,10));
 		top.setBounds(10,0,200,30);
 		p2.add(top);
 		
@@ -198,7 +198,7 @@ public class main extends JFrame{
 		img.setBorder(new LineBorder(Color.black));
 		img.setBounds(440,110,220,110);
 		
-		b1.setFont(new Font("¸¼Àº °íµñ",1,10));
+		b1.setFont(new Font("ë§‘ì€ ê³ ë”•",1,10));
 		b1.setBounds(10,0,100,30);
 		p3.add(b1);
 		
@@ -213,14 +213,14 @@ public class main extends JFrame{
 		
 		setVisible(true);
 		setSize(700,600);
-		setTitle("¸ŞÀÎ");
+		setTitle("ë©”ì¸");
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
 		
-		// ¸¶¿ì½º·Î µ¿ÀÛÇßÀ» ¶§
+		// ë§ˆìš°ìŠ¤ë¡œ ë™ì‘í–ˆì„ ë•Œ
 		img.addMouseListener(new MouseAdapter() {
 			@Override
-			// ¸¶¿ì½º·Î Å¬¸¯ÇßÀ» ¶§
+			// ë§ˆìš°ìŠ¤ë¡œ í´ë¦­í–ˆì„ ë•Œ
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
@@ -239,12 +239,12 @@ public class main extends JFrame{
 			}
 		});
 		
-		// ÆûÀÌ µ¿ÀÛÇßÀ» ¶§
+		// í¼ì´ ë™ì‘í–ˆì„ ë•Œ
 		addWindowListener(new WindowAdapter() {
 			@Override
-			// ÆûÀÌ ´İÈ÷´Â ÁßÀÏ ¶§
-			// windowClosed¿Í È¥¿ë ÁÖÀÇ
-			// windowClosed »ç¿ë ½Ã, ÆûÀÌ ´İÈ÷°í ³ª¸é ÇÁ·Î±×·¥ÀÌ ÀÚµ¿À¸·Î Á¾·áµÇ¾î ´Ù¸¥ ÆûÀ» ºÒ·¯¿Ã ¼ö ¾øÀ½
+			// í¼ì´ ë‹«íˆëŠ” ì¤‘ì¼ ë•Œ
+			// windowClosedì™€ í˜¼ìš© ì£¼ì˜
+			// windowClosed ì‚¬ìš© ì‹œ, í¼ì´ ë‹«íˆê³  ë‚˜ë©´ í”„ë¡œê·¸ë¨ì´ ìë™ìœ¼ë¡œ ì¢…ë£Œë˜ì–´ ë‹¤ë¥¸ í¼ì„ ë¶ˆëŸ¬ì˜¬ ìˆ˜ ì—†ìŒ
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				super.windowClosing(e);
@@ -254,7 +254,7 @@ public class main extends JFrame{
 	}
 	
 	void set() {
-		//·£´ı
+		//ëœë¤
 		Random r=new Random();
 		
 		Timer timer=new Timer();
@@ -262,13 +262,13 @@ public class main extends JFrame{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				// RandomÀÇ r.nextInt()´Â 0ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î ¿øÇÏ´Â ¸¶Áö¸· °ªº¸´Ù ÇÏ³ª Àû°Ô °ªÀ» ³Ö°í °á°ú°ª¿¡ 1 ´õÇØÁÖ±â
-				// ÀÌ¹ÌÁö Å¬¸¯ ½Ã, Å¬¸¯ÇÑ ºê·£µå ±¤°í°¡ ¶°¾ßÇÔ. r.nextInt(199)+1 À» µÎ ¹ø ¾²¸é ¼­·Î °ªÀÌ ´Ù¸£°Ô ³ª¿À¹Ç·Î ¸ÕÀú ÀúÀåÇÔ.
+				// Randomì˜ r.nextInt()ëŠ” 0ë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ ì›í•˜ëŠ” ë§ˆì§€ë§‰ ê°’ë³´ë‹¤ í•˜ë‚˜ ì ê²Œ ê°’ì„ ë„£ê³  ê²°ê³¼ê°’ì— 1 ë”í•´ì£¼ê¸°
+				// ì´ë¯¸ì§€ í´ë¦­ ì‹œ, í´ë¦­í•œ ë¸Œëœë“œ ê´‘ê³ ê°€ ë– ì•¼í•¨. r.nextInt(199)+1 ì„ ë‘ ë²ˆ ì“°ë©´ ì„œë¡œ ê°’ì´ ë‹¤ë¥´ê²Œ ë‚˜ì˜¤ë¯€ë¡œ ë¨¼ì € ì €ì¥í•¨.
 				advertise.no=r.nextInt(199)+1;
 				img.setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+(advertise.no)+"-"+(r.nextInt(1)+1)+".jpg").getImage().getScaledInstance(220, 110, 0)));
 			}
 		};
-		//task¸¦, 0 ¹Ğ¸®ÃÊ ÀÌÈÄºÎÅÍ, 2000 ¹Ğ¸®ÃÊ °£°İÀ¸·Î
+		//taskë¥¼, 0 ë°€ë¦¬ì´ˆ ì´í›„ë¶€í„°, 2000 ë°€ë¦¬ì´ˆ ê°„ê²©ìœ¼ë¡œ
 		timer.schedule(task, 0, 2000);
 		
 	}

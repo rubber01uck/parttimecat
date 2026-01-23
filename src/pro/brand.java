@@ -35,7 +35,7 @@ public class brand extends JFrame{
 	public brand () {
 		setLayout(null);
 		
-		cb1.addItem("ÀüÃ¼");
+		cb1.addItem("ì „ì²´");
 		mgr.sql="select * from category;";
 		list=mgr.a2();
 		for (int i = 0; i < list.size(); i++) {
@@ -48,8 +48,8 @@ public class brand extends JFrame{
 		});
 
 		
-		left.setFont(new Font("¸¼Àº °íµñ", 1, 24));
-		right.setFont(new Font("¸¼Àº °íµñ", 1, 24));
+		left.setFont(new Font("ë§‘ì€ ê³ ë”•", 1, 24));
+		right.setFont(new Font("ë§‘ì€ ê³ ë”•", 1, 24));
 		all.setBackground(Color.white);
 		
 		cb1.setBounds(20, 10, 150, 25);
@@ -66,7 +66,7 @@ public class brand extends JFrame{
 		set();
 		
 		setVisible(true);
-		setTitle("ºê·£µå");
+		setTitle("ë¸Œëœë“œ");
 		setSize(600, 500);
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
@@ -85,7 +85,7 @@ public class brand extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
-				// ¿ŞÂÊ È­»ìÇ¥°¡ È°¼ºÈ­µÇ¾îÀÖ´Ù¸é
+				// ì™¼ìª½ í™”ì‚´í‘œê°€ í™œì„±í™”ë˜ì–´ìˆë‹¤ë©´
 				if(left.isEnabled()) {
 					limit-=6;
 					set();
@@ -109,7 +109,7 @@ public class brand extends JFrame{
 	void set() {
 		all.removeAll();
 		
-		// ÄŞº¸¹Ú½º Á¶°Ç¿¡ ¸Â´Â ÃÖ´ñ°ª °¡Á®¿À±â
+		// ì½¤ë³´ë°•ìŠ¤ ì¡°ê±´ì— ë§ëŠ” ìµœëŒ“ê°’ ê°€ì ¸ì˜¤ê¸°
 		if(cb1.getSelectedIndex()==0) {
 			mgr.sql="select bno, bname from brand;";
 		} else {
@@ -118,24 +118,24 @@ public class brand extends JFrame{
 		list=mgr.a2();
 		int max=list.size();
 		
-		// ¿ŞÂÊ ¿À¸¥ÂÊ È­»ìÇ¥ ºñÈ°¼ºÈ­ ¿©ºÎ ÁöÁ¤
+		// ì™¼ìª½ ì˜¤ë¥¸ìª½ í™”ì‚´í‘œ ë¹„í™œì„±í™” ì—¬ë¶€ ì§€ì •
 		left.setEnabled(true);
 		right.setEnabled(true);
-		// ÇöÁ¦ ÆäÀÌÁöÀÇ Ã¹ ¹øÂ° °ªÀÌ ÀüÃ¼ÀÇ Ã¹ ¹øÂ° °ªÀÌ¸é
+		// í˜„ì œ í˜ì´ì§€ì˜ ì²« ë²ˆì§¸ ê°’ì´ ì „ì²´ì˜ ì²« ë²ˆì§¸ ê°’ì´ë©´
 		if(limit==0) {
-			// ¿ŞÂÊ È­»ìÇ¥ ºñÈ°¼ºÈ­
+			// ì™¼ìª½ í™”ì‚´í‘œ ë¹„í™œì„±í™”
 			left.setEnabled(false);
 		} 
-		// ÇöÁ¦ ÆäÀÌÁö¿¡ ÀüÃ¼ÀÇ ¸¶Áö¸· ¹øÂ° °ªÀÌ Æ÷ÇÔµÇ¾îÀÖ´Ù¸é
+		// í˜„ì œ í˜ì´ì§€ì— ì „ì²´ì˜ ë§ˆì§€ë§‰ ë²ˆì§¸ ê°’ì´ í¬í•¨ë˜ì–´ìˆë‹¤ë©´
 		if(limit+6>=max) {
-			// ¿À¸¥ÂÊ È­»ìÇ¥ ºñÈ°¼ºÈ­
+			// ì˜¤ë¥¸ìª½ í™”ì‚´í‘œ ë¹„í™œì„±í™”
 			right.setEnabled(false);
 		}
 		
 		if(cb1.getSelectedIndex()==0) {
-			// ºê·£µå´Â 6°³¾¿ °¡Á®¿À¹Ç·Î limitÀ» »ç¿ë
-			// limit ½ÃÀÛ°ª(»ı·«=0), ¾ç
-			// ¿¹) limit 6,6 => ÀÏ°ö ¹øÂ° ÇàºÎÅÍ 6°³ °¡Á®¿Í¶ó
+			// ë¸Œëœë“œëŠ” 6ê°œì”© ê°€ì ¸ì˜¤ë¯€ë¡œ limitì„ ì‚¬ìš©
+			// limit ì‹œì‘ê°’(ìƒëµ=0), ì–‘
+			// ì˜ˆ) limit 6,6 => ì¼ê³± ë²ˆì§¸ í–‰ë¶€í„° 6ê°œ ê°€ì ¸ì™€ë¼
 			mgr.sql="select bno, bname from brand limit "+limit+", 6;";
 		} else {
 			mgr.sql="select bno, bname from brand where cno="+cb1.getSelectedIndex()+" limit "+limit+", 6;";

@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 public class login extends JFrame {
 
-	// , JLabel.CENTER <- ±ÛÀÚ °¡¿îµ¥ Á¤·Ä ¡Ö .setHorizontalAlignment(JLabel.CENTER)
-	JLabel lb1=new JLabel("¾Ë¹ÙÄ¹", JLabel.CENTER);
+	// , JLabel.CENTER <- ê¸€ì ê°€ìš´ë° ì •ë ¬ â‰’ .setHorizontalAlignment(JLabel.CENTER)
+	JLabel lb1=new JLabel("ì•Œë°”ìº£", JLabel.CENTER);
 	JTextField tf1=new JTextField();
 	JTextField tf2=new JTextField();
-	JButton bt1=new JButton("·Î±×ÀÎ");
+	JButton bt1=new JButton("ë¡œê·¸ì¸");
 	
 	ArrayList<Bean>list;
 	Bean bean;
@@ -23,31 +23,31 @@ public class login extends JFrame {
 	public login() {
 		setLayout(null);
 		
-		// ÆùÆ® º¯°æ
-		// new Font(ÆùÆ®¸í, ÆùÆ® ½ºÅ¸ÀÏ, ÆùÆ® Å©±â)
-		// ÆùÆ® ½ºÅ¸ÀÏ => 0=±âº», 1=º¼µåÃ¼(±½°Ô), 2=ÀÌÅÅ¸¯Ã¼(±â¿ï±â), 3=º¼µåÃ¼+ÀÌÅÅ¸¯Ã¼
-		lb1.setFont(new Font("¸¼Àº °íµñ",0,20));
-		// ±ÛÀÚ»ö º¯°æ
+		// í°íŠ¸ ë³€ê²½
+		// new Font(í°íŠ¸ëª…, í°íŠ¸ ìŠ¤íƒ€ì¼, í°íŠ¸ í¬ê¸°)
+		// í°íŠ¸ ìŠ¤íƒ€ì¼ => 0=ê¸°ë³¸, 1=ë³¼ë“œì²´(êµµê²Œ), 2=ì´íƒ¤ë¦­ì²´(ê¸°ìš¸ê¸°), 3=ë³¼ë“œì²´+ì´íƒ¤ë¦­ì²´
+		lb1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,20));
+		// ê¸€ììƒ‰ ë³€ê²½
 		// new Color(R,G,B)
 		lb1.setForeground(new Color(255,120,50));
 		
-		bt1.setFont(new Font("¸¼Àº °íµñ",0,10));
+		bt1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,10));
 		bt1.setForeground(Color.white);
-		// ¹è°æ»ö º¯°æ
+		// ë°°ê²½ìƒ‰ ë³€ê²½
 		bt1.setBackground(new Color(255,120,50));
 		
-		// ¹èÄ¡ ¼³Á¤
-		// .setBounds(x°ª, y°ª, Æø °ª, ³ôÀÌ °ª)
+		// ë°°ì¹˜ ì„¤ì •
+		// .setBounds(xê°’, yê°’, í­ ê°’, ë†’ì´ ê°’)
 		lb1.setBounds(0,0,485,30);
 		tf1.setBounds(20,60,220,30);
 		tf2.setBounds(250,60,220,30);
 		bt1.setBounds(20,100,450,30);
 		
-		// À§Ä¡¸¸ Á¶Á¤ÇÏ°í ½Í´Ù¸é
-		// .setLocation(x°ª, y°ª)
+		// ìœ„ì¹˜ë§Œ ì¡°ì •í•˜ê³  ì‹¶ë‹¤ë©´
+		// .setLocation(xê°’, yê°’)
 
-		// Å©±â¸¸ Á¶Á¤ÇÏ°í ½Í´Ù¸é
-		// .setSize(Æø °ª, ³ôÀÌ °ª)
+		// í¬ê¸°ë§Œ ì¡°ì •í•˜ê³  ì‹¶ë‹¤ë©´
+		// .setSize(í­ ê°’, ë†’ì´ ê°’)
 		
 		add(lb1);
 		add(tf1);
@@ -56,39 +56,39 @@ public class login extends JFrame {
 		
 		setVisible(true);
 		setSize(500,200);
-		setTitle("·Î±×ÀÎ");
-		// Æû ¾ÆÀÌÄÜ º¯°æ
-		// ./datafiles/icon/icon.png <- »ó´ë ÁÖ¼Ò (. ¡Ö ÇöÀç ÆÄÀÏ À§Ä¡±îÁö´Â »ı·«)
-		// »ó´ë ÁÖ¼Ò <=> Àı´ë ÁÖ¼Ò (C:\Users\guest\Desktop\parttimecat\parttimecat\datafiles\icon\icon.png)
+		setTitle("ë¡œê·¸ì¸");
+		// í¼ ì•„ì´ì½˜ ë³€ê²½
+		// ./datafiles/icon/icon.png <- ìƒëŒ€ ì£¼ì†Œ (. â‰’ í˜„ì¬ íŒŒì¼ ìœ„ì¹˜ê¹Œì§€ëŠ” ìƒëµ)
+		// ìƒëŒ€ ì£¼ì†Œ <=> ì ˆëŒ€ ì£¼ì†Œ (C:\Users\guest\Desktop\parttimecat\parttimecat\datafiles\icon\icon.png)
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
-		// Æû ¹è°æ»ö º¯°æ
+		// í¼ ë°°ê²½ìƒ‰ ë³€ê²½
 		getContentPane().setBackground(Color.white);
 		
-		// bt1ÀÌ µ¿ÀÛÇÒ ¶§ (¸¶¿ì½º, Å°º¸µå µÑ ´Ù °¡´É)
+		// bt1ì´ ë™ì‘í•  ë•Œ (ë§ˆìš°ìŠ¤, í‚¤ë³´ë“œ ë‘˜ ë‹¤ ê°€ëŠ¥)
 		bt1.addActionListener((e)->{
 			mgr.sql="select uno, unick from user where uid='"+tf1.getText()+"' and upw='"+tf2.getText()+"';";
-			// °á°ú°ªÀÇ ¿­ÀÌ 2°³ ¡Ö .a2()
+			// ê²°ê³¼ê°’ì˜ ì—´ì´ 2ê°œ â‰’ .a2()
 			list=mgr.a2();
-			// tf µÑ Áß ÇÏ³ª¶óµµ ºóÄ­ÀÌ¸é
+			// tf ë‘˜ ì¤‘ í•˜ë‚˜ë¼ë„ ë¹ˆì¹¸ì´ë©´
 			if(tf1.getText().equals("")||tf2.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "ºóÄ­ÀÌ ÀÖ½À´Ï´Ù.","°æ°í",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ë¹ˆì¹¸ì´ ìˆìŠµë‹ˆë‹¤.","ê²½ê³ ",JOptionPane.ERROR_MESSAGE);
 			}else if(tf1.getText().equals("admin")&&tf2.getText().equals("1234")){
-				JOptionPane.showMessageDialog(null, "°ü¸®ÀÚ·Î ·Î±×ÀÎÇÏ¿´½À´Ï´Ù.","Á¤º¸",JOptionPane.INFORMATION_MESSAGE);
-				// Æû ´İ±â
+				JOptionPane.showMessageDialog(null, "ê´€ë¦¬ìë¡œ ë¡œê·¸ì¸í•˜ì˜€ìŠµë‹ˆë‹¤.","ì •ë³´",JOptionPane.INFORMATION_MESSAGE);
+				// í¼ ë‹«ê¸°
 				dispose();
-				// °ü¸®ÀÚ ¸ŞÀÎ Æû ºÒ·¯¿À±â
+				// ê´€ë¦¬ì ë©”ì¸ í¼ ë¶ˆëŸ¬ì˜¤ê¸°
 				new amain();
-			// sql °Ë»ö °á°ú°¡ ¾øÀ» ¶§ ¡Ö ÇØ´ç id, pw¸¦ °¡Áø È¸¿øÀÌ ¾øÀ» ¶§
+			// sql ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ì„ ë•Œ â‰’ í•´ë‹¹ id, pwë¥¼ ê°€ì§„ íšŒì›ì´ ì—†ì„ ë•Œ
 			}else if(list.size()==0) {
-				JOptionPane.showMessageDialog(null, "ÀÏÄ¡ÇÏ´Â È¸¿ø Á¤º¸°¡ ¾ø½À´Ï´Ù.","°æ°í",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ì¼ì¹˜í•˜ëŠ” íšŒì› ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.","ê²½ê³ ",JOptionPane.ERROR_MESSAGE);
 			}else {
-				// °Ë»ö °á°ú°¡ ÇÏ³ª¶óµµ ÀÖ¾î¾ß¸¸ °¡Á®¿Ã ¼ö ÀÖÀ½
+				// ê²€ìƒ‰ ê²°ê³¼ê°€ í•˜ë‚˜ë¼ë„ ìˆì–´ì•¼ë§Œ ê°€ì ¸ì˜¬ ìˆ˜ ìˆìŒ
 				bean=list.get(0);
-				// bean.getB() ¡Ö unick
-				JOptionPane.showMessageDialog(null, bean.getB()+" È¸¿ø´Ô È¯¿µÇÕ´Ï´Ù.","Á¤º¸",JOptionPane.INFORMATION_MESSAGE);
-				// mainÀÇ intÇü º¯¼ö no¸¦ bean.getA() ¡Ö uno·Î º¯°æÇÔ
-				// Integer.parseInt() <- intÇüÀÌ ¾Æ´Ñ º¯¼ö¸¦ intÇüÀ¸·Î º¯È¯ÇÒ ¶§ »ç¿ë
-				// bean¿¡ ´ã±ä °ªÀº Ç×»ó ¹®ÀÚ¿­ÀÓ
+				// bean.getB() â‰’ unick
+				JOptionPane.showMessageDialog(null, bean.getB()+" íšŒì›ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.","ì •ë³´",JOptionPane.INFORMATION_MESSAGE);
+				// mainì˜ intí˜• ë³€ìˆ˜ noë¥¼ bean.getA() â‰’ unoë¡œ ë³€ê²½í•¨
+				// Integer.parseInt() <- intí˜•ì´ ì•„ë‹Œ ë³€ìˆ˜ë¥¼ intí˜•ìœ¼ë¡œ ë³€í™˜í•  ë•Œ ì‚¬ìš©
+				// beanì— ë‹´ê¸´ ê°’ì€ í•­ìƒ ë¬¸ìì—´ì„
 				main.no=Integer.parseInt(bean.getA());
 				dispose();
 				new main();
@@ -98,7 +98,7 @@ public class login extends JFrame {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// ·Î±×ÀÎ Æû ºÒ·¯¿À±â (½ÇÇà)
+		// ë¡œê·¸ì¸ í¼ ë¶ˆëŸ¬ì˜¤ê¸° (ì‹¤í–‰)
 		new login();
 	}
 

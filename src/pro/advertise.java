@@ -36,8 +36,8 @@ public class advertise extends JFrame{
 		lb1.setText("<html>"+bean.getB());
 		lb4.setText("<html>"+bean.getC());
 		
-		lb1.setFont(new Font("¸¼Àº °íµñ",1,18));
-		lb4.setFont(new Font("¸¼Àº °íµñ",0,13));
+		lb1.setFont(new Font("ë§‘ì€ ê³ ë”•",1,18));
+		lb4.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
 		
 		lb2.setBorder(new LineBorder(Color.black));
 		lb3.setBorder(new LineBorder(Color.black));
@@ -65,7 +65,7 @@ public class advertise extends JFrame{
 		
 		setVisible(true);
 		setSize(400,400);
-		setTitle("±¤°í Á¤º¸");
+		setTitle("ê´‘ê³  ì •ë³´");
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
 		
@@ -88,9 +88,9 @@ public class advertise extends JFrame{
 	void set() {
 		Timer timer=new Timer();
 		TimerTask task=new TimerTask() {
-			// x°ª
+			// xê°’
 			int x=0;
-			// ¸ŞÀÎ ÀÌ¹ÌÁö ±¸ºĞ(0 = -1.jpg, 1 = -2.jpg)
+			// ë©”ì¸ ì´ë¯¸ì§€ êµ¬ë¶„(0 = -1.jpg, 1 = -2.jpg)
 			int n=0;
 			@Override
 			public void run() {
@@ -98,34 +98,34 @@ public class advertise extends JFrame{
 				try {
 					lb2.setBounds(x,0,340,150);
 					lb3.setBounds(x+340,0,340,150);
-					// ¿ŞÂÊÀ¸·Î ÀÌµ¿
+					// ì™¼ìª½ìœ¼ë¡œ ì´ë™
 					x--;
 					
-					// ÀÌ¹ÌÁö Æø¸¸Å­ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇßÀ¸¸é ¡Ö ¼­ºê ÀÌ¹ÌÁö°¡ ¸ŞÀÎ ÀÌ¹ÌÁö À§Ä¡¿¡ ¿ÔÀ¸¸é
+					// ì´ë¯¸ì§€ í­ë§Œí¼ ì™¼ìª½ìœ¼ë¡œ ì´ë™í–ˆìœ¼ë©´ â‰’ ì„œë¸Œ ì´ë¯¸ì§€ê°€ ë©”ì¸ ì´ë¯¸ì§€ ìœ„ì¹˜ì— ì™”ìœ¼ë©´
 					if(x<-340) {
-						// ¸ŞÀÎ ÀÌ¹ÌÁö°¡ -1.jpg ¿´À¸¸é
+						// ë©”ì¸ ì´ë¯¸ì§€ê°€ -1.jpg ì˜€ìœ¼ë©´
 						if(n==0) {
-							// ¸ŞÀÎ ÀÌ¹ÌÁö¸¦ -2.jpg·Î
-							// ¼­ºê ÀÌ¹ÌÁö¸¦ -1.jpg·Î º¯°æ
+							// ë©”ì¸ ì´ë¯¸ì§€ë¥¼ -2.jpgë¡œ
+							// ì„œë¸Œ ì´ë¯¸ì§€ë¥¼ -1.jpgë¡œ ë³€ê²½
 							lb2.setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+no+"-2.jpg").getImage().getScaledInstance(340, 150, 0)));
 							lb3.setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+no+"-1.jpg").getImage().getScaledInstance(340, 150, 0)));
-							// ¸ŞÀÎ ÀÌ¹ÌÁö º¯°æÇßÀ¸´Ï ±¸ºĞ °ª º¯°æ
+							// ë©”ì¸ ì´ë¯¸ì§€ ë³€ê²½í–ˆìœ¼ë‹ˆ êµ¬ë¶„ ê°’ ë³€ê²½
 							n=1;
 						}else {
-							// ¸ŞÀÎ ÀÌ¹ÌÁö¸¦ -1.jpg·Î
-							// ¼­ºê ÀÌ¹ÌÁö¸¦ -2.jpg·Î º¯°æ
+							// ë©”ì¸ ì´ë¯¸ì§€ë¥¼ -1.jpgë¡œ
+							// ì„œë¸Œ ì´ë¯¸ì§€ë¥¼ -2.jpgë¡œ ë³€ê²½
 							lb2.setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+no+"-1.jpg").getImage().getScaledInstance(340, 150, 0)));
 							lb3.setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+no+"-2.jpg").getImage().getScaledInstance(340, 150, 0)));
-							// ¸ŞÀÎ ÀÌ¹ÌÁö º¯°æÇßÀ¸´Ï ±¸ºĞ °ª º¯°æ
+							// ë©”ì¸ ì´ë¯¸ì§€ ë³€ê²½í–ˆìœ¼ë‹ˆ êµ¬ë¶„ ê°’ ë³€ê²½
 							n=0;
 						}
-						// µÎ ÀÌ¹ÌÁö ¸ğµÎ ¿ø À§Ä¡
-						// x=0 »ı·« ½Ã, x °ª -346À¸·Î ÀÌµ¿µÇ¾î ¿Ã¹Ù¸£°Ô ÀüÈ¯µÇÁö ¾ÊÀ½
+						// ë‘ ì´ë¯¸ì§€ ëª¨ë‘ ì› ìœ„ì¹˜
+						// x=0 ìƒëµ ì‹œ, x ê°’ -346ìœ¼ë¡œ ì´ë™ë˜ì–´ ì˜¬ë°”ë¥´ê²Œ ì „í™˜ë˜ì§€ ì•ŠìŒ
 						x=0;
 						lb2.setBounds(x,0,340,150);
 						lb3.setBounds(x+340,0,340,150);
 						
-						// ÀÌ¹ÌÁö 0.5ÃÊ ¸ØÃã
+						// ì´ë¯¸ì§€ 0.5ì´ˆ ë©ˆì¶¤
 						Thread.sleep(500);
 					}
 				} catch (Exception e) {
@@ -133,7 +133,7 @@ public class advertise extends JFrame{
 				}
 			}
 		};
-		// ½ÃÀÛ ÀÌ¹ÌÁö º¸ÀÌ°Ô 0.5ÃÊ ¸ØÃß°í ½ÃÀÛ, ¾à 5ÃÊ µ¿¾È ÀÌµ¿µÇµµ·Ï 15¹Ğ¸®ÃÊ ¸¶´Ù -1 x¾¿ ÀÌµ¿
+		// ì‹œì‘ ì´ë¯¸ì§€ ë³´ì´ê²Œ 0.5ì´ˆ ë©ˆì¶”ê³  ì‹œì‘, ì•½ 5ì´ˆ ë™ì•ˆ ì´ë™ë˜ë„ë¡ 15ë°€ë¦¬ì´ˆ ë§ˆë‹¤ -1 xì”© ì´ë™
 		timer.schedule(task, 500, 15);
 	}
 	

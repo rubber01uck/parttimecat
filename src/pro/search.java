@@ -20,16 +20,16 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 public class search extends JFrame{
 
-	// Ä«Å×°í¸® º¯°æ ½Ã
-	// cno°¡ 0º¸´Ù Å©´Ù¸é / cno´Â 1ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î Ä«Å×°í¸® ÀüÃ¼¸¦ ÀÇ¹Ì
-	// Ä«Å×°í¸® º¯°æ ½Ã¿¡µµ, °Ë»ö ½Ã¿¡µµ whereÀ» ½á¾ß ÇÔ
-	// ÇÏÁö¸¸ ÇÑ ±¸¹®¿¡ whereÀ» µÎ ¹ø ¾µ ¼ö´Â ¾ø°í and ·Î Á¶°ÇÀ» ¿¬°áÇØÁÖ¾î¾ß ÇÏ´Âµ¥
-	// °¢°¢ µ¿ÀÛÇÒ ¶§¸¶´Ù ´Ù¸¥ Á¶°ÇÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö ÆÇº°ÇÏ´Â Á¶°Ç¹®ÀÌ ±æ±â ¶§¹®¿¡
-	// Ä«Å×°í¸® º¯°æ ¹®±¸´Â ¹«Á¶°Ç where·Î ½ÃÀÛ, °Ë»ö ¹®±¸´Â ¹«Á¶°Ç and·Î ½ÃÀÛÇÏ°Ô ÇÒ °ÍÀÓ
-	// ¶§¹®¿¡ Ä«Å×°í¸® ÀüÃ¼¸¦ ³ªÅ¸³»´Â ±âº» °ªÀ¸·Î 'where cno > 0' ÁöÁ¤
+	// ì¹´í…Œê³ ë¦¬ ë³€ê²½ ì‹œ
+	// cnoê°€ 0ë³´ë‹¤ í¬ë‹¤ë©´ / cnoëŠ” 1ë¶€í„° ì‹œì‘í•˜ë¯€ë¡œ ì¹´í…Œê³ ë¦¬ ì „ì²´ë¥¼ ì˜ë¯¸
+	// ì¹´í…Œê³ ë¦¬ ë³€ê²½ ì‹œì—ë„, ê²€ìƒ‰ ì‹œì—ë„ whereì„ ì¨ì•¼ í•¨
+	// í•˜ì§€ë§Œ í•œ êµ¬ë¬¸ì— whereì„ ë‘ ë²ˆ ì“¸ ìˆ˜ëŠ” ì—†ê³  and ë¡œ ì¡°ê±´ì„ ì—°ê²°í•´ì£¼ì–´ì•¼ í•˜ëŠ”ë°
+	// ê°ê° ë™ì‘í•  ë•Œë§ˆë‹¤ ë‹¤ë¥¸ ì¡°ê±´ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ íŒë³„í•˜ëŠ” ì¡°ê±´ë¬¸ì´ ê¸¸ê¸° ë•Œë¬¸ì—
+	// ì¹´í…Œê³ ë¦¬ ë³€ê²½ ë¬¸êµ¬ëŠ” ë¬´ì¡°ê±´ whereë¡œ ì‹œì‘, ê²€ìƒ‰ ë¬¸êµ¬ëŠ” ë¬´ì¡°ê±´ andë¡œ ì‹œì‘í•˜ê²Œ í•  ê²ƒì„
+	// ë•Œë¬¸ì— ì¹´í…Œê³ ë¦¬ ì „ì²´ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê¸°ë³¸ ê°’ìœ¼ë¡œ 'where cno > 0' ì§€ì •
 	String w="where cno > 0";
-	// Á¤·Ä º¯°æ ½Ã
-	// ±âº» °ª = ±âº»¼ø, jno ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	// ì •ë ¬ ë³€ê²½ ì‹œ
+	// ê¸°ë³¸ ê°’ = ê¸°ë³¸ìˆœ, jno ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	String o="order by j.jno";
 	
 	JLabel lb1=new JLabel(new ImageIcon(new ImageIcon("./datafiles/icon/cat.png").getImage().getScaledInstance(120, 60, 0)));
@@ -38,7 +38,7 @@ public class search extends JFrame{
 	
 	JComboBox cb1=new JComboBox();
 	
-	String b[] ={"±âº»¼ø", "ÀÎ±â¼ø", "±Ş¿©³ôÀº¼ø"};
+	String b[] ={"ê¸°ë³¸ìˆœ", "ì¸ê¸°ìˆœ", "ê¸‰ì—¬ë†’ì€ìˆœ"};
 	JComboBox cb2=new JComboBox(b);
 	
 	JScrollPane jsp1=new JScrollPane();
@@ -54,19 +54,19 @@ public class search extends JFrame{
 	public search() {
 		setLayout(null);
 
-		// 'ÀüÃ¼'´Â category Å×ÀÌºí¿¡ ¾øÀ¸¹Ç·Î µû·Î ¸ÕÀú Ãß°¡
-		cb1.addItem("ÀüÃ¼");
+		// 'ì „ì²´'ëŠ” category í…Œì´ë¸”ì— ì—†ìœ¼ë¯€ë¡œ ë”°ë¡œ ë¨¼ì € ì¶”ê°€
+		cb1.addItem("ì „ì²´");
 		mgr.sql="select * from category;";
 		list=mgr.a2();
-		// listÀÇ ±æÀÌ ¸¸Å­ ¡Ö °á°ú Å×ÀÌºíÀÇ Çà °³¼ö ¸¸Å­ µ¹µµ·Ï
+		// listì˜ ê¸¸ì´ ë§Œí¼ â‰’ ê²°ê³¼ í…Œì´ë¸”ì˜ í–‰ ê°œìˆ˜ ë§Œí¼ ëŒë„ë¡
 		for (int i = 0; i < list.size(); i++) {
 			bean=list.get(i);
 			cb1.addItem(bean.getB());
 		}
 		
-		cb1.setFont(new Font("¸¼Àº °íµñ",0,13));
-		cb2.setFont(new Font("¸¼Àº °íµñ",0,13));
-		tf1.setFont(new Font("¸¼Àº °íµñ",0,13));
+		cb1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
+		cb2.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
+		tf1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
 		
 		cb1.setBackground(Color.white);
 		cb2.setBackground(Color.white);   
@@ -94,7 +94,7 @@ public class search extends JFrame{
 		
 		setVisible(true);
 		setSize(600,600);
-		setTitle("Ã¤¿ë");
+		setTitle("ì±„ìš©");
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		getContentPane().setBackground(Color.white);
 		
@@ -119,18 +119,18 @@ public class search extends JFrame{
 		
 		cb1.addItemListener(new ItemListener() {
 			@Override
-			// ÄŞº¸¹Ú½º ¼±ÅÃ °ªÀÌ ¹Ù²ğ ¶§
+			// ì½¤ë³´ë°•ìŠ¤ ì„ íƒ ê°’ì´ ë°”ë€” ë•Œ
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				// ¼±ÅÃ °ªÀÌ 0¹øÂ° ¸ñ·Ï ¡Ö 'ÀüÃ¼'¶ó¸é
+				// ì„ íƒ ê°’ì´ 0ë²ˆì§¸ ëª©ë¡ â‰’ 'ì „ì²´'ë¼ë©´
 				if(cb1.getSelectedIndex()==0) {
-					// whereÀ» ¾²Áö ¾Ê°í ÀüÃ¼ °Ë»ö
+					// whereì„ ì“°ì§€ ì•Šê³  ì „ì²´ ê²€ìƒ‰
 					w="where cno > 0";
 				}else {
 					w="where cno="+cb1.getSelectedIndex();
 				}
 				
-				// ´Ù½Ã ¹èÄ¡
+				// ë‹¤ì‹œ ë°°ì¹˜
 				set();
 			}
 		});
@@ -171,7 +171,7 @@ public class search extends JFrame{
 	}
 	
 	void set() {
-		// °Ë»ö ¶Ç´Â ÄŞº¸¹Ú½º º¯°æ ÈÄ, Àç¹èÄ¡ÇÒ ¶§ ±âÁ¸¿¡ ¹èÄ¡ÇÑ °´Ã¼¸¦ ¸ğµÎ Áö¿ò
+		// ê²€ìƒ‰ ë˜ëŠ” ì½¤ë³´ë°•ìŠ¤ ë³€ê²½ í›„, ì¬ë°°ì¹˜í•  ë•Œ ê¸°ì¡´ì— ë°°ì¹˜í•œ ê°ì²´ë¥¼ ëª¨ë‘ ì§€ì›€
 		all.removeAll();
 		
 		all.setLayout(null);
@@ -179,20 +179,20 @@ public class search extends JFrame{
 		
 		int y=10;
 		
-		// w¿Í o »çÀÌ¿¡ ¶ç¾î¾²±â ÀØÁö ¸»±â
-		// ÀÎ±â¼ø Á¤·Ä ½Ã, ÁÁ¾Æ¿ä È½¼ö¸¦ ¾Ë¾Æ¾ß ÇÏ¹Ç·Î likes¸¦ ¾¸
-		// ÇÏÁö¸¸ likes ±âÁØÀ¸·Î ÀÛ¼ºÇÏ¸é likes¿¡ ¾ø´Â
-		// Áï, ÁÁ¾Æ¿ä¸¦ ¹ŞÁö ¸øÇÑ ¾Ë¹Ù Á¤º¸´Â ³ªÅ¸³ªÁö ¾Ê¾Æ ¹ö¸®±â ¶§¹®¿¡
-		// right joinÀ» »ç¿ëÇÏ¿© job ±âÁØÀ¸·Î ¿¬°á
+		// wì™€ o ì‚¬ì´ì— ë„ì–´ì“°ê¸° ìŠì§€ ë§ê¸°
+		// ì¸ê¸°ìˆœ ì •ë ¬ ì‹œ, ì¢‹ì•„ìš” íšŸìˆ˜ë¥¼ ì•Œì•„ì•¼ í•˜ë¯€ë¡œ likesë¥¼ ì”€
+		// í•˜ì§€ë§Œ likes ê¸°ì¤€ìœ¼ë¡œ ì‘ì„±í•˜ë©´ likesì— ì—†ëŠ”
+		// ì¦‰, ì¢‹ì•„ìš”ë¥¼ ë°›ì§€ ëª»í•œ ì•Œë°” ì •ë³´ëŠ” ë‚˜íƒ€ë‚˜ì§€ ì•Šì•„ ë²„ë¦¬ê¸° ë•Œë¬¸ì—
+		// right joinì„ ì‚¬ìš©í•˜ì—¬ job ê¸°ì¤€ìœ¼ë¡œ ì—°ê²°
 		mgr.sql="select j.jno, jname from likes as i right join job as j on i.jno=j.jno join brand as b on j.bno=b.bno "+w+" group by j.jno "+o+";";
 		list=mgr.a2();
 		for (int i = 0; i < list.size() ; i++) {
 			bean=list.get(i);
 			job[i]=new JLabel("<html> <p style=text-align:center>"+bean.getB());
-			// jno ÀúÀå
+			// jno ì €ì¥
 			job[i].setName(bean.getA());
 			job[i].setHorizontalAlignment(JLabel.CENTER);
-			job[i].setFont(new Font("¸¼Àº °íµñ",1,15));
+			job[i].setFont(new Font("ë§‘ì€ ê³ ë”•",1,15));
 			job[i].setBounds(10,y,500,60);
 			job[i].setBorder(new LineBorder(Color.black));
 			all.add(job[i]);
@@ -205,7 +205,7 @@ public class search extends JFrame{
 					super.mouseClicked(e);
 					dispose();
 					info.h=1;
-					// Å¬¸¯µÈ job[]ÀÇ Name. Áï, Å¬¸¯ÇÑ ¾Ë¹Ù Á¤º¸ÀÇ jno°¡ info¿¡ ÀúÀåµÊ.
+					// í´ë¦­ëœ job[]ì˜ Name. ì¦‰, í´ë¦­í•œ ì•Œë°” ì •ë³´ì˜ jnoê°€ infoì— ì €ì¥ë¨.
 					info.no=Integer.parseInt(job[n].getName());
 					new info();
 				}
@@ -221,11 +221,11 @@ public class search extends JFrame{
 		list=mgr.a3();
 		for (int i = 0; i < list.size(); i++) {
 			bean=list.get(i);
-			// <p style=text-align:center> <- html ±¸¹®À» ¾²´Â ºÎºĞÀ» °¡¿îµ¥ Á¤·Ä ÇØÁÜ
+			// <p style=text-align:center> <- html êµ¬ë¬¸ì„ ì“°ëŠ” ë¶€ë¶„ì„ ê°€ìš´ë° ì •ë ¬ í•´ì¤Œ
 			ad[i]=new JLabel("<html> <p style=text-align:center>"+bean.getB());
 			ad[i].setName(bean.getA());
 			ad[i].setIcon(new ImageIcon(new ImageIcon("./datafiles/advertise/"+bean.getA()+"-1.jpg").getImage().getScaledInstance(120, 60, 0)));
-			ad[i].setFont(new Font("¸¼Àº °íµñ",1,15));
+			ad[i].setFont(new Font("ë§‘ì€ ê³ ë”•",1,15));
 			ad[i].setBounds(10,y,500,60);
 			ad[i].setBorder(new LineBorder(Color.black));
 			all.add(ad[i]);
@@ -246,7 +246,7 @@ public class search extends JFrame{
 		}
 		
 		all.setPreferredSize(new Dimension(0,y));
-		// all »õ·Î°íÄ§
+		// all ìƒˆë¡œê³ ì¹¨
 		all.updateUI();
 	}
 	

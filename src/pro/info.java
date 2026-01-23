@@ -30,9 +30,9 @@ public class info extends JFrame{
 	JScrollPane jsp1=new JScrollPane();
 	JPanel all=new JPanel();
 	JLabel lb2=new JLabel();
-	JLabel map=new JLabel(new ImageIcon(new ImageIcon("./datafiles/Áöµµ.png").getImage().getScaledInstance(300, 275, 0)));
+	JLabel map=new JLabel(new ImageIcon(new ImageIcon("./datafiles/ì§€ë„.png").getImage().getScaledInstance(300, 275, 0)));
 	
-	JButton bt1=new JButton("Áö¿øÇÏ±â¡æ");
+	JButton bt1=new JButton("ì§€ì›í•˜ê¸°â†’");
 
 	JLabel border=new JLabel();
 	
@@ -43,24 +43,24 @@ public class info extends JFrame{
 	public info(){
 		setLayout(null);
 
-		// format() <- Çü½Ä ¼³Á¤
-		// format(Çü½ÄÀ» ÁöÁ¤ÇÒ ¿­ÀÌ¸§, Çü½Ä)
-		// '#,###' <- Ãµ ´ÜÀ§ ±¸ºĞ ±âÈ£ Çü½Ä
-		mgr.sql="select jname, format(jmoney,'#,###'), jday, jtime, if(jwork=0,'Á¤±ÔÁ÷','°è¾àÁ÷'), if(jgrade=0,'¹«°ü',if(jgrade=1,'´ëÇĞ','°íµî')), jpeople, bname from job as j join brand as b on j.bno=b.bno where jno="+no+";";
+		// format() <- í˜•ì‹ ì„¤ì •
+		// format(í˜•ì‹ì„ ì§€ì •í•  ì—´ì´ë¦„, í˜•ì‹)
+		// '#,###' <- ì²œ ë‹¨ìœ„ êµ¬ë¶„ ê¸°í˜¸ í˜•ì‹
+		mgr.sql="select jname, format(jmoney,'#,###'), jday, jtime, if(jwork=0,'ì •ê·œì§','ê³„ì•½ì§'), if(jgrade=0,'ë¬´ê´€',if(jgrade=1,'ëŒ€í•™','ê³ ë“±')), jpeople, bname from job as j join brand as b on j.bno=b.bno where jno="+no+";";
 		list=mgr.a8();
 		bean=list.get(0);
 		lb1.setText("<html>"+bean.getA());
-		lb2.setText("<html>[±Ù¹«Á¶°Ç]<br>±Ş¿©: "+bean.getB()+"¿ø<br>±Ù¹«¿äÀÏ: ÁÖ "+bean.getC()+"È¸<br>±Ù¹«½Ã°£: "+bean.getD()+"½Ã°£<br>°í¿ëÇüÅÂ: "+bean.getE()+"<br><br>[¸ğÁıÁ¶°Ç]<br>Áö¿øÀÚ°İ: "+bean.getF()+"<br>¸ğÁıÀÎ¿ø: "+bean.getG()+"¸í<br><br>[±â¾÷Á¤º¸]<br>"+bean.getH()+"<br>¡äÀ§Ä¡º¸±â");
-		// ±Û À§ °ø¹éÀ» ¾ø¾Ö°í ½Í´Ù¸é ±ÛÀÚ ¼¼·Î Á¤·ÄÀ» ¹Ù²Ù¸é µÊ (»ı·« °¡´É)
+		lb2.setText("<html>[ê·¼ë¬´ì¡°ê±´]<br>ê¸‰ì—¬: "+bean.getB()+"ì›<br>ê·¼ë¬´ìš”ì¼: ì£¼ "+bean.getC()+"íšŒ<br>ê·¼ë¬´ì‹œê°„: "+bean.getD()+"ì‹œê°„<br>ê³ ìš©í˜•íƒœ: "+bean.getE()+"<br><br>[ëª¨ì§‘ì¡°ê±´]<br>ì§€ì›ìê²©: "+bean.getF()+"<br>ëª¨ì§‘ì¸ì›: "+bean.getG()+"ëª…<br><br>[ê¸°ì—…ì •ë³´]<br>"+bean.getH()+"<br>â–½ìœ„ì¹˜ë³´ê¸°");
+		// ê¸€ ìœ„ ê³µë°±ì„ ì—†ì• ê³  ì‹¶ë‹¤ë©´ ê¸€ì ì„¸ë¡œ ì •ë ¬ì„ ë°”ê¾¸ë©´ ë¨ (ìƒëµ ê°€ëŠ¥)
 		lb2.setVerticalAlignment(JLabel.TOP);
 		
 		
-		lb1.setFont(new Font("¸¼Àº °íµñ",1,20));
+		lb1.setFont(new Font("ë§‘ì€ ê³ ë”•",1,20));
 		
-		heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/ÇÏÆ®2.png").getImage().getScaledInstance(30, 30, 0)));
+		heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/í•˜íŠ¸2.png").getImage().getScaledInstance(30, 30, 0)));
 		heart.setName("0");
 		
-		bt1.setFont(new Font("¸¼Àº °íµñ",0,13));
+		bt1.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
 		bt1.setBackground(new Color(255,120,50));
 		bt1.setForeground(Color.white);
 		
@@ -83,7 +83,7 @@ public class info extends JFrame{
 		add(jsp1);
 		add(border);
 		
-		lb2.setFont(new Font("¸¼Àº °íµñ",0,13));
+		lb2.setFont(new Font("ë§‘ì€ ê³ ë”•",0,13));
  
 		all.setLayout(null);
 		all.setBackground(Color.white);
@@ -95,7 +95,7 @@ public class info extends JFrame{
 		
 		setIconImage(new ImageIcon("./datafiles/icon/icon.png").getImage());
 		setVisible(true);
-		setTitle("¾Ë¹Ù Á¤º¸");
+		setTitle("ì•Œë°” ì •ë³´");
 		setSize(400,500);
 		getContentPane().setBackground(Color.white);
 		
@@ -105,10 +105,10 @@ public class info extends JFrame{
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if(heart.getName().equals("0")) {
-					heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/ÇÏÆ®1.png").getImage().getScaledInstance(30, 30, 0)));
+					heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/í•˜íŠ¸1.png").getImage().getScaledInstance(30, 30, 0)));
 					heart.setName("1");
 				}else {
-					heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/ÇÏÆ®2.png").getImage().getScaledInstance(30, 30, 0)));
+					heart.setIcon(new ImageIcon(new ImageIcon("./datafiles/icon/í•˜íŠ¸2.png").getImage().getScaledInstance(30, 30, 0)));
 					heart.setName("0");
 				}
 			}
@@ -121,8 +121,12 @@ public class info extends JFrame{
 				super.windowClosing(e);
 				if(h==0) {
 					new main();
-				}else {
+				}else if(h==1){
 					new search();
+				}else if(h==2){
+					new binfo();
+				}else {
+					new mypage();
 				}
 			}
 		});
