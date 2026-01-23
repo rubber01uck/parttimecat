@@ -32,6 +32,8 @@ public class info extends JFrame{
 	JLabel lb2=new JLabel();
 	JLabel map=new JLabel(new ImageIcon(new ImageIcon("./datafiles/지도.png").getImage().getScaledInstance(300, 275, 0)));
 	
+	JLabel dot=new JLabel("●");
+	
 	JButton bt1=new JButton("지원하기→");
 
 	JLabel border=new JLabel();
@@ -46,14 +48,18 @@ public class info extends JFrame{
 		// format() <- 형식 설정
 		// format(형식을 지정할 열이름, 형식)
 		// '#,###' <- 천 단위 구분 기호 형식
-		mgr.sql="select jname, format(jmoney,'#,###'), jday, jtime, if(jwork=0,'정규직','계약직'), if(jgrade=0,'무관',if(jgrade=1,'대학','고등')), jpeople, bname from job as j join brand as b on j.bno=b.bno where jno="+no+";";
-		list=mgr.a8();
+		mgr.sql="select jname, format(jmoney,'#,###'), jday, jtime, if(jwork=0,'정규직','계약직'), if(jgrade=0,'무관',if(jgrade=1,'대학','고등')), jpeople, bname, bxx, byy from job as j join brand as b on j.bno=b.bno where jno="+no+";";
+		list=mgr.a10();
 		bean=list.get(0);
 		lb1.setText("<html>"+bean.getA());
 		lb2.setText("<html>[근무조건]<br>급여: "+bean.getB()+"원<br>근무요일: 주 "+bean.getC()+"회<br>근무시간: "+bean.getD()+"시간<br>고용형태: "+bean.getE()+"<br><br>[모집조건]<br>지원자격: "+bean.getF()+"<br>모집인원: "+bean.getG()+"명<br><br>[기업정보]<br>"+bean.getH()+"<br>▽위치보기");
 		// 글 위 공백을 없애고 싶다면 글자 세로 정렬을 바꾸면 됨 (생략 가능)
 		lb2.setVerticalAlignment(JLabel.TOP);
 		
+		dot.setName(bean.getH());
+		
+		dot.setForeground(Color.red);
+		dot.setBounds(Integer.parseInt(bean.getI())/2, Integer.parseInt(bean.getJ())/2, 20,20);
 		
 		lb1.setFont(new Font("맑은 고딕",1,20));
 		
@@ -82,6 +88,7 @@ public class info extends JFrame{
 		add(bt1);
 		add(jsp1);
 		add(border);
+		map.add(dot);
 		
 		lb2.setFont(new Font("맑은 고딕",0,13));
  
@@ -98,6 +105,27 @@ public class info extends JFrame{
 		setTitle("알바 정보");
 		setSize(400,500);
 		getContentPane().setBackground(Color.white);
+		
+		dot.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				// 이름을 저장하기에는 열이 이미 10개라
+				// 브랜드 이름으로 검색해서 브랜드 번호 가져오고 binfo에 저장하도록 함
+				mgr.sql="select * from brand where bname='"+dot.getName()+"';";
+				list=mgr.a1();
+				bean=list.get(0);
+				dispose();
+				binfo.h=0;
+				binfo.no=Integer.parseInt(bean.getA());
+				new binfo();
+			}
+		});
+		
+		jsp1.getVerticalScrollBar().addAdjustmentListener((e)->{
+			dot.repaint();
+		});
 		
 		heart.addMouseListener(new MouseAdapter() {
 			@Override
