@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class binfo extends JFrame{
 
-	static int no=1;
+	static int no=0;
 	static int h=0;
 	
 	JLabel logo=new JLabel();

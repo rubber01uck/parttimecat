@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
 
 public class main extends JFrame{
 
-	static int no=1;
+	static int no=0;
 	
 	// .getScaledInstance(이미지 폭 값, 이미지 높이 값, 이미지 스타일(gif 제외 = Image.SMOOTH)))
 	// Image.SMOOTH = 4 (근데 0 해도 됨)
@@ -121,7 +121,7 @@ public class main extends JFrame{
 		}
 		
 		// 로그인한 유저가 가장 최근에 지원한 알바의 카테고리 구하는 법
-		mgr.sql="select cno from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno where uno=1 order by apdate desc limit 1;";
+		mgr.sql="select cno from apply as a join job as j on a.jno=j.jno join brand as b on j.bno=b.bno where uno="+main.no+" order by apdate desc limit 1;";
 		list=mgr.a1();
 		// 로그인이 지원한 알바가 없을 경우 ≒ 위 sql의 결과 값이 나오지 않음
 		if(list.size()==0) {
